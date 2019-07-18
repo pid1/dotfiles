@@ -1,0 +1,48 @@
+- name: Run the playbook on localhost
+  hosts: 127.0.0.1
+  connection: local
+  become: yes
+
+  tasks:
+    - name: Update repos and install packages
+      action: >
+        {{ ansible_pkg_mgr }}
+        name: "{{ packages }}"
+        update_cache: yes
+        state: present
+      vars:
+        packages:
+          - tmux
+          - curl
+          - sysstat
+          - tcpdump
+          - traceroute
+          - ethtool
+          - procps-ng
+          - pciutils
+          - thefuck
+          - silversearcher-ag
+          - mosh
+    - name: Install tmux config
+      copy:
+        src: ../dotfiles/tmux.conf
+        dest: /home/j/.tmux.conf
+        owner: j
+        group: j
+        mode: 0644
+    - name: Install bash aliases
+      copy:
+        src: ../dotfiles/bash_aliases
+        dest: /home/j/.bash_aliases
+        owner: j
+        group: j
+        mode: 0644
+        mode: 0644
+    - name: Hush login
+      copy:
+        content: ""
+        dest: /home/j/.hushlogin
+        force: no
+        owner: j
+        group: j
+        mode: 0644
