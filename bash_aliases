@@ -33,6 +33,18 @@ alias fuck='eval $(thefuck $(fc -ln -1))'
 # thefuck, conference edition
 alias please='fuck'
 
-# just use neovim
+# just use neovim, and use it via Docker
 alias vi="nvim"
 alias vim="nvim"
+alias nvim="docker_neovim"
+
+docker_neovim(){
+if [[ "$1" = /* ]]; then
+    file_name="$(basename ${1})"
+    dir_name="$(dirname ${1})"
+else
+    file_name="$1"
+    dir_name="$(pwd)"
+fi
+	docker run -it --rm -v "$dir_name":/src neovim /bin/sh -c "cd /src;nvim $file_name"
+}
