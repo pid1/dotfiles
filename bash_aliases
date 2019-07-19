@@ -36,15 +36,27 @@ alias please='fuck'
 # just use neovim, and use it via Docker
 alias vi="nvim"
 alias vim="nvim"
-alias nvim="docker_neovim"
 
+# Docker functions and aliases
+alias goodmorning="docker_nocache_rebuild"
+docker_nocache_rebuild(){
+cd /home/j/repos/dockerfiles
+bash rebuilds.sh
+}
+
+alias nvim="docker_neovim"
 docker_neovim(){
 if [[ "$1" = /* ]]; then
-    file_name="$(basename ${1})"
-    dir_name="$(dirname ${1})"
+	file_name="$(basename ${1})"
+	dir_name="$(dirname ${1})"
 else
-    file_name="$1"
-    dir_name="$(pwd)"
+	file_name="$1"
+	dir_name="$(pwd)"
 fi
-	docker run -it --rm -v "$dir_name":/src neovim /bin/sh -c "cd /src;nvim $file_name"
+docker run -it --rm -v "$dir_name":/src neovim /bin/sh -c "cd /src;nvim $file_name"
+}
+
+alias hammer="docker_hammer"
+docker_hammer(){
+    docker run -it --rm "$@"
 }
