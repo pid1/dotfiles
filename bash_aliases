@@ -58,5 +58,5 @@ docker run -it --rm -v "$dir_name":/src neovim /bin/sh -c "cd /src;nvim $file_na
 
 alias hammer="docker_hammer"
 docker_hammer(){
-    docker run -it --rm "$@"
+	docker run --rm -it hammer "$@"
 }
