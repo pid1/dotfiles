@@ -40,7 +40,7 @@ alias vim="nvim"
 # Docker functions and aliases
 alias goodmorning="docker_nocache_rebuild"
 	docker_nocache_rebuild(){
-	cd "$(HOME)"/repos/dockerfiles
+	cd "$HOME"/repos/personal/dockerfiles
 	bash rebuilds.sh
 }
 
