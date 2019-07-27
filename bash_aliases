@@ -77,3 +77,8 @@ alias ansible="docker_ansible"
 docker_ansible(){
 	docker run --rm -it ansible "$@"
 }
+
+alias nmap="docker_nmap"
+docker_nmap(){
+	docker run --rm -it nmap "$@"
+}
