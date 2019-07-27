@@ -6,7 +6,7 @@ alias dl='cd /home/j/net'
 alias g='git'
 alias cp='cp -i'
 alias mv='mv -i'
-alias ap='ansible-playbook -K'
+alias ap='ansible playbook'
 alias svim="sudo nvim"
 alias ll='ls -alF'
 alias la='ls -A'
@@ -71,4 +71,9 @@ docker_hammer(){
 alias os="docker_openstack_cli"
 docker_openstack_cli(){
 	docker run --env-file "$HOME"/.config/os_env --rm -it openstack_cli "$@"
+}
+
+alias ansible="docker_ansible"
+docker_ansible(){
+	docker run --rm -it ansible "$@"
 }
