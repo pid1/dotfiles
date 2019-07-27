@@ -40,7 +40,7 @@ alias vim="nvim"
 # Docker functions and aliases
 alias goodmorning="docker_nocache_rebuild"
 	docker_nocache_rebuild(){
-	cd "$(HOME)"/repos/dockerfiles
+	cd "$HOME"/repos/dockerfiles
 	bash rebuilds.sh
 }
 
@@ -63,5 +63,5 @@ docker_hammer(){
 
 alias os="docker_openstack_cli"
 docker_openstack_cli(){
-	docker run --env-file "$(HOME)"/.config/env.secrets --rm -it openstack_cli "$@"
+	docker run --env-file "$HOME"/.config/os_env --rm -it openstack_cli "$@"
 }
