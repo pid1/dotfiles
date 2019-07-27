@@ -39,9 +39,9 @@ alias vim="nvim"
 
 # Docker functions and aliases
 alias goodmorning="docker_nocache_rebuild"
-docker_nocache_rebuild(){
-cd /home/j/repos/dockerfiles
-bash rebuilds.sh
+	docker_nocache_rebuild(){
+	cd "$(HOME)"/repos/dockerfiles
+	bash rebuilds.sh
 }
 
 alias nvim="docker_neovim"
@@ -59,4 +59,9 @@ docker run -it --rm -v "$dir_name":/src neovim /bin/sh -c "cd /src;nvim $file_na
 alias hammer="docker_hammer"
 docker_hammer(){
 	docker run --rm -it hammer "$@"
+}
+
+alias os="docker_openstack_cli"
+docker_openstack_cli(){
+	docker run --env-file "$(HOME)"/.config/env.secrets --rm -it openstack_cli "$@"
 }
