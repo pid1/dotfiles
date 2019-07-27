@@ -37,9 +37,16 @@ alias please='fuck'
 alias vi="nvim"
 alias vim="nvim"
 
+# Daily tasks, based on OS
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+    alias goodmorning="docker_nocache_rebuild"
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+    alias goodmorning="brew update && brew upgrade && docker_nocache_rebuild"
+fi
+
 # Docker functions and aliases
-alias goodmorning="docker_nocache_rebuild"
-	docker_nocache_rebuild(){
+docker_nocache_rebuild()
+{
 	cd "$HOME"/repos/personal/dockerfiles
 	bash rebuilds.sh
 }
