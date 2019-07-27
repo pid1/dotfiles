@@ -82,3 +82,8 @@ alias nmap="docker_nmap"
 docker_nmap(){
 	docker run --rm -it nmap "$@"
 }
+
+alias pg="docker_playground"
+docker_playground(){
+	docker run --rm -it playground "$@"
+}
