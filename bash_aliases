@@ -87,3 +87,8 @@ alias pg="docker_playground"
 docker_playground(){
 	docker run --rm -it playground "$@"
 }
+
+alias ipmitool="docker_ipmitool"
+docker_ipmitool(){
+	docker run --rm -it ipmitool "$@"
+}
