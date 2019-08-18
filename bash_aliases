@@ -92,3 +92,8 @@ alias ipmitool="docker_ipmitool"
 docker_ipmitool(){
 	docker run --rm -it ipmitool "$@"
 }
+
+alias kali="docker_kali"
+docker_kali(){
+	docker run --rm -it kali
+}
