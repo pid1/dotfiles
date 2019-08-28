@@ -2,12 +2,8 @@
 alias mux='tmux new-session -AD -s main'
 
 # wrist savers
-alias dl='cd /home/j/net'
-alias g='git'
 alias cp='cp -i'
 alias mv='mv -i'
-alias ap='ansible playbook'
-alias svim="sudo nvim"
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
@@ -47,7 +43,7 @@ fi
 # Docker functions and aliases
 docker_nocache_rebuild()
 {
-	cd "$HOME"/repos/personal/dockerfiles
+	cd "$HOME"/repos/personal/dockerfiles || exit
 	bash rebuilds.sh
 }
 
@@ -73,9 +69,26 @@ docker_openstack_cli(){
 	docker run --env-file "$HOME"/.config/os_env --rm -it openstack_cli "$@"
 }
 
+# For using glance etc
+alias oscli="docker_openstack_shell"
+docker_openstack_shell(){
+	docker run --env-file "$HOME"/.config/os_env -v "$(pwd)":/home/appuser/ --rm -it --entrypoint /bin/bash openstack_cli
+}
+
 alias ansible="docker_ansible"
 docker_ansible(){
-	docker run --rm -it ansible "$@"
+    docker run --rm -it \
+        -v "$HOME"/.ssh/id_rsa:/home/appuser/.ssh/id_rsa \
+        -v "$HOME"/.ssh/id_rsa.pub:/home/appuser/.ssh/id_rsa.pub \
+        -v "$(pwd)":/home/appuser ansible "$@"
+}
+
+alias ap="docker_ansible-playbook"
+docker_ansible-playbook(){
+    docker run --rm -it \
+        -v "$HOME"/.ssh/id_rsa:/home/appuser/.ssh/id_rsa \
+        -v "$HOME"/.ssh/id_rsa.pub:/home/appuser/.ssh/id_rsa.pub \
+        -v "$(pwd)":/home/appuser ansible-playbook "$@"
 }
 
 alias nmap="docker_nmap"
