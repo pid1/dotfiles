@@ -62,23 +62,23 @@ else
 	file_name="$1"
 	dir_name="$(pwd)"
 fi
-docker run -it --rm -v "$dir_name":/src neovim /bin/sh -c "cd /src;nvim $file_name"
+docker run -it --rm -v "$dir_name":/src jroemer/neovim /bin/sh -c "cd /src;nvim $file_name"
 }
 
 alias hammer="docker_hammer"
 docker_hammer(){
-	docker run -v "$HOME"/.config/hammer:/etc/hammer --rm -it hammer "$@"
+	docker run -v "$HOME"/.config/hammer:/etc/hammer --rm -it jroemer/hammer "$@"
 }
 
 alias os="docker_openstack_cli"
 docker_openstack_cli(){
-	docker run --env-file "$HOME"/.config/os_env --rm -it openstack_cli "$@"
+	docker run --env-file "$HOME"/.config/os_env --rm -it jroemer/openstack_cli "$@"
 }
 
 # For using glance etc
 alias oscli="docker_openstack_shell"
 docker_openstack_shell(){
-	docker run --env-file "$HOME"/.config/os_env -v "$(pwd)":/home/appuser/ --rm -it --entrypoint /bin/bash openstack_cli
+	docker run --env-file "$HOME"/.config/os_env -v "$(pwd)":/home/appuser/ --rm -it --entrypoint /bin/bash jroemer/openstack_cli
 }
 
 alias ansible="docker_ansible"
@@ -86,7 +86,7 @@ docker_ansible(){
     docker run --rm -it \
         -v "$HOME"/.ssh/id_rsa:/home/appuser/.ssh/id_rsa \
         -v "$HOME"/.ssh/id_rsa.pub:/home/appuser/.ssh/id_rsa.pub \
-        -v "$(pwd)":/home/appuser ansible "$@"
+        -v "$(pwd)":/home/appuser jroemer/ansible "$@"
 }
 
 alias ap="docker_ansible-playbook"
@@ -94,30 +94,30 @@ docker_ansible-playbook(){
     docker run --rm -it \
         -v "$HOME"/.ssh/id_rsa:/home/appuser/.ssh/id_rsa \
         -v "$HOME"/.ssh/id_rsa.pub:/home/appuser/.ssh/id_rsa.pub \
-        -v "$(pwd)":/home/appuser ansible-playbook "$@"
+        -v "$(pwd)":/home/appuser jroemer/ansible-playbook "$@"
 }
 
 alias nmap="docker_nmap"
 docker_nmap(){
-	docker run --rm -it nmap "$@"
+	docker run --rm -it jroemer/nmap "$@"
 }
 
 alias pg="docker_playground"
 docker_playground(){
-	docker run --rm -it playground "$@"
+	docker run --rm -it jroemer/playground "$@"
 }
 
 alias ipmitool="docker_ipmitool"
 docker_ipmitool(){
-	docker run --rm -it ipmitool "$@"
+	docker run --rm -it jroemer/ipmitool "$@"
 }
 
 alias kali="docker_kali"
 docker_kali(){
-	docker run --rm -it kali
+	docker run --rm -it jroemer/kali
 }
 
 alias http="docker_httpie"
 docker_httpie(){
-	docker run --rm -it httpie "$@"
+	docker run --rm -it jroemer/httpie "$@"
 }
