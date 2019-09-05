@@ -40,6 +40,12 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     alias goodmorning="brew update && brew upgrade && docker_nocache_rebuild"
 fi
 
+# Docker shortcuts
+
+alias build="docker build --rm -t \"${PWD##*/}\" -f Dockerfile ."
+alias cbuild="docker build --rm --pull --no-cache -t \"${PWD##*/}\" -f Dockerfile ."
+alias brun="docker build -q --rm -t \"${PWD##*/}\" -f Dockerfile .; docker run --rm \"${PWD##*/}\""
+
 # Docker functions and aliases
 docker_nocache_rebuild()
 {
@@ -61,7 +67,7 @@ docker run -it --rm -v "$dir_name":/src neovim /bin/sh -c "cd /src;nvim $file_na
 
 alias hammer="docker_hammer"
 docker_hammer(){
-	docker run --rm -it hammer "$@"
+	docker run -v "$HOME"/.config/hammer:/etc/hammer --rm -it hammer "$@"
 }
 
 alias os="docker_openstack_cli"
@@ -109,4 +115,9 @@ docker_ipmitool(){
 alias kali="docker_kali"
 docker_kali(){
 	docker run --rm -it kali
+}
+
+alias http="docker_httpie"
+docker_httpie(){
+	docker run --rm -it httpie "$@"
 }
