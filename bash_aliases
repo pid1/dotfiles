@@ -4,6 +4,7 @@ alias mux='tmux new-session -AD -s main'
 # wrist savers
 alias cp='cp -i'
 alias mv='mv -i'
+alias rm='rm -i'
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
@@ -35,9 +36,9 @@ alias vim="nvim"
 
 # Daily tasks, based on OS
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-    alias goodmorning="docker_nocache_rebuild"
+    alias goodmorning="docker_update"
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-    alias goodmorning="brew update && brew upgrade && docker_nocache_rebuild"
+    alias goodmorning="brew update && brew upgrade && docker_update"
 fi
 
 # Docker shortcuts
@@ -47,10 +48,10 @@ alias cbuild="docker build --rm --pull --no-cache -t \"${PWD##*/}\" -f Dockerfil
 alias brun="docker build -q --rm -t \"${PWD##*/}\" -f Dockerfile .; docker run --rm \"${PWD##*/}\""
 
 # Docker functions and aliases
-docker_nocache_rebuild()
+docker_update()
 {
-	cd "$HOME"/repos/personal/dockerfiles || exit
-	bash rebuilds.sh
+    cd "$HOME"/repos/personal/dockerfiles
+    bash update.sh
 }
 
 alias nvim="docker_neovim"
