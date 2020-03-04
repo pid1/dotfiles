@@ -1,15 +1,3 @@
-call plug#begin('~/.vim/plugged')
-    " Syntax Checking
-    Plug 'vim-syntastic/syntastic'
-    " Highlight whitespace
-    Plug 'pid1/spacehi.vim'
-    " Completion
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    " Statusline
-    Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
-call plug#end()
-
 " Built-in search: The Better EasyMotion (TM)
 set incsearch
 set nohlsearch
@@ -51,12 +39,6 @@ set nocompatible
 filetype plugin indent on
 set autoindent
 
-" 4 column expanded tabs by default
-set tabstop=4
-set shiftwidth=4
-set expandtab
-set softtabstop=4
-
 "syntax highlighting, numbering
 set number
 syntax on
@@ -67,22 +49,3 @@ set smartcase
 
 " Anything but utf-8 is silly
 set encoding=utf-8
-
-" Deoplete options
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-let g:deoplete#omni_patterns = {}
-let g:deoplete#omni_patterns.terraform = '[^ *\t"{=$]\w*'
-let g:deoplete#enable_at_startup = 1
-call deoplete#initialize()
-
-" Status line and Syntastic Options
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 1
-let g:syntastic_loc_list_height=10
-let g:syntastic_sh_shellcheck_args="-x"
-let g:airline_theme='solarized'
