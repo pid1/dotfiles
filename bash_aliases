@@ -11,7 +11,5 @@ alias l='ls -CF'
 alias ls="command ls --color"
 alias untar='tar xzvf'
 alias tarup='tar czvf
-alias fuck='eval $(thefuck $(fc -ln -1))'
-alias please='fuck'
 alias vi="nvim"
 alias vim="nvim"
