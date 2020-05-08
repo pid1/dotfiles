@@ -11,5 +11,3 @@ alias l='ls -CF'
 alias ls="ls --color"
 alias untar='tar xzvf'
 alias tarup='tar czvf'
-alias vi="nvim"
-alias vim="nvim"
