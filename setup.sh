@@ -1,6 +1,7 @@
 #! /usr/bin/env bash
 
 touch .hushlogin
+apt update
 apt install build-essential \
             manpages-posix-dev \
             mosh \
