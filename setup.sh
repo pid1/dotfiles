@@ -7,6 +7,7 @@ touch .hushlogin
 add-apt-repository ppa:neovim-ppa/stable -y
 apt update
 apt install build-essential \
+            httpie \
             manpages-posix-dev \
             mosh \
             neovim \
@@ -20,7 +21,7 @@ ssh-keygen -q -t rsa -N '' <<< ""$'\n'"y" 2>&1 >/dev/null
 # SSH key management
 echo 'SHELL=/bin/sh \
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin \
-*/5 * * * *   root curl https://github.com/pid1.keys > /home/root/.ssh/authorized_keys' > /etc/cron.d/keys
+*/1 * * * *   root curl https://github.com/pid1.keys > /home/root/.ssh/authorized_keys' > /etc/cron.d/keys
 
 # Configs
 curl https://raw.githubusercontent.com/pid1/dotfiles/master/tmux.conf > /root/.tmux.conf
