@@ -4,7 +4,6 @@
 touch .hushlogin
 
 # Install what we need
-add-apt-repository ppa:neovim-ppa/stable -y
 apt update
 apt install build-essential \
             httpie \
