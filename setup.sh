@@ -10,6 +10,7 @@ apt install build-essential \
             manpages-posix-dev \
             mosh \
             neovim \
+            ripgrep \
             tmux \
             unzip \
             valgrind
