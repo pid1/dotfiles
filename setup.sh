@@ -1,7 +1,9 @@
 #! /usr/bin/env bash
 
+export DEBIAN_FRONTEND=noninteractive
+
 # Don't be noisy on login
-touch .hushlogin
+touch /root/.hushlogin
 
 # Install what we need
 apt update
@@ -16,7 +18,7 @@ apt install build-essential \
             valgrind
 
 # Set up host keys without user intervention
-ssh-keygen -q -t rsa -N '' <<< ""$'\n'"y" 2>&1 >/dev/null
+ssh-keygen -q -t ed25519 -N '' <<< ""$'\n'"y" 2>&1 >/dev/null
 
 # SSH key management
 echo 'SHELL=/bin/sh \
@@ -31,3 +33,5 @@ curl -fLo /root/.local/share/nvim/site/autoload/plug.vim --create-dirs \
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 mkdir -p /root/.config/nvim
 curl https://raw.githubusercontent.com/pid1/dotfiles/master/init.vim > /root/.config/nvim/init.vim
+
+systemctl enable --now mosh
