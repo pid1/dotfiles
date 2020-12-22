@@ -33,5 +33,3 @@ curl -fLo /root/.local/share/nvim/site/autoload/plug.vim --create-dirs \
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 mkdir -p /root/.config/nvim
 curl https://raw.githubusercontent.com/pid1/dotfiles/master/init.vim > /root/.config/nvim/init.vim
-
-systemctl enable --now mosh
