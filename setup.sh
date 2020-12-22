@@ -7,7 +7,7 @@ touch /root/.hushlogin
 
 # Install what we need
 apt update
-apt install build-essential \
+apt install -y build-essential \
             httpie \
             manpages-posix-dev \
             mosh \
